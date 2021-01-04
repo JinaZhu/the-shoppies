@@ -21,7 +21,6 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const searchMovie = async (currentInputValue) => {
-    console.log("searching api");
     if (!currentInputValue) {
       setSearchResults([]);
       return;
@@ -32,7 +31,6 @@ const Home = () => {
         `http://omdbapi.com/?apikey=${apiKey}&type=movie&s=${currentInputValue}`
       );
       const data = await response.json();
-      console.log(data);
       if (data.Search) {
         setSearchResults(data.Search);
       }
@@ -55,6 +53,8 @@ const Home = () => {
     setSearchInput("");
     setSearchResults([]);
   }
+
+  console.log("searchResults", searchResults);
 
   return (
     <HomeContainer>

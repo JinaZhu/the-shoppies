@@ -43,8 +43,7 @@ const MovieResults = ({ searchResults }) => {
               </Button>
             </DetailContainer>
             <MoreInfo
-              moviePoster={movieDetail.Poster}
-              movieID={movieDetail.imdbID}
+              movieDetail={movieDetail}
               selectedMovie={selectedMovie}
               isOpen={isOpen}
             />

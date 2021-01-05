@@ -20,7 +20,7 @@ const MoreInfo = ({ selectedMovie, isOpen, movieDetail }) => {
       localStorage.setItem("nominations", JSON.stringify(nomination));
     } else {
       const allNominations = JSON.parse(localStorage.getItem("nominations"));
-      allNominations[movieID] = nomination;
+      allNominations[movieID] = nominatedMovieDetail;
       localStorage.setItem("nominations", JSON.stringify(allNominations));
     }
     movieDetail.isAdded = true;

@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import { useSprings } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
+import { StackContainer } from "./styled";
+import Poster from "./Poster";
+
 const to = (i) => ({
   x: 0,
   y: i * -4,
@@ -59,7 +62,21 @@ const NominationStack = () => {
     }
   );
 
-  return <p>stacking posters</p>;
+  console.log(nominations);
+  return (
+    <StackContainer>
+      {props.map((springProps, i) => (
+        <Poster
+          key={i}
+          i={i}
+          springProps={springProps}
+          trans={trans}
+          nominations={Object.values(nominations)}
+          bind={bind}
+        />
+      ))}
+    </StackContainer>
+  );
 };
 
 export default NominationStack;

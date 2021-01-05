@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HomeContainer = styled.div`
   background-color: black;
@@ -86,4 +86,22 @@ export const InfoText = styled.p`
 
 export const DetailTypeContainer = styled.div`
   width: ${(props) => props.width};
+`;
+
+export const MoreInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+  height: 0;
+  overflow: hidden;
+
+  ${(props) => {
+    return (
+      props.isActive &&
+      css`
+        height: 225px;
+      `
+    );
+  }};
 `;

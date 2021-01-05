@@ -77,8 +77,6 @@ const Home = () => {
     setSearchResults([]);
   }
 
-  console.log("searchResults", searchResults);
-
   return (
     <HomeContainer>
       <img src={clappingBoard} alt="clapping board" width="100%" />

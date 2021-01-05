@@ -17,6 +17,19 @@ import MovieResults from "./MovieResults";
 
 const apiKey = config.omdbAPIKey;
 
+function checkMovieInLocalStorage(nominations, movieData) {
+  const transformed = movieData.map((movie) => {
+    const isAdded = nominations.hasOwnProperty(movie.imdbID);
+    // const isAdded = movie.imdbID in nominations;
+
+    return {
+      ...movie,
+      isAdded,
+    };
+  });
+  return transformed;
+}
+
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -33,7 +46,16 @@ const Home = () => {
       );
       const data = await response.json();
       if (data.Search) {
-        setSearchResults(data.Search);
+        const nominations = JSON.parse(localStorage.getItem("nominations"));
+        if (nominations) {
+          const updatedNominations = checkMovieInLocalStorage(
+            nominations,
+            data.Search
+          );
+          setSearchResults(updatedNominations);
+        } else {
+          setSearchResults(data.Search);
+        }
       }
     } catch (error) {
       console.log("error", error);

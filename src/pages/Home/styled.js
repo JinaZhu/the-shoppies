@@ -15,7 +15,7 @@ export const ClapperInfo = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   flex-direction: column;
-  width: 90%;
+  width: 90vw;
 `;
 
 export const ClapperText = styled.p`
@@ -71,6 +71,7 @@ export const MovieLi = styled.li`
   font-family: "Bebas Neue", cursive;
   color: white;
   border-bottom: 3px solid white;
+  width: 90vw;
 `;
 
 export const DetailContainer = styled.div`
@@ -100,8 +101,29 @@ export const MoreInfoContainer = styled.div`
     return (
       props.isActive &&
       css`
-        height: 225px;
+        height: 240px;
       `
     );
   }};
+`;
+
+export const NominationButton = styled.button`
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-size: 30px;
+  font-family: "Bebas Neue", cursive;
+  position: relative;
+  margin: 20px;
+`;
+
+export const NominationText = styled.p`
+  position: absolute;
+  font-size: 32px;
+  bottom: 10%;
+  left: ${(props) => props.left || "20%"};
+  color: white;
+  font-weight: bold;
 `;

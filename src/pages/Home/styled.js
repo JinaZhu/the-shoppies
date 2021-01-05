@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const HomeContainer = styled.div`
   background-color: black;
@@ -47,9 +47,61 @@ export const SearchBar = styled.input`
   text-align: center;
 `;
 
-export const ClearButton = styled.button`
+export const Button = styled.button`
   background-color: transparent;
   outline: none;
   border: none;
   cursor: pointer;
+`;
+
+export const MovieUl = styled.ul`
+  margin: 0;
+  padding: 0;
+  overflow-y: scroll;
+  user-select: none;
+  will-change: transform;
+  height: 48vh;
+`;
+
+export const MovieLi = styled.li`
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  font-family: "Bebas Neue", cursive;
+  color: white;
+  border-bottom: 3px solid white;
+`;
+
+export const DetailContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+export const InfoText = styled.p`
+  font-size: ${(props) => props.size || "20"}px;
+  margin: 0 20px;
+`;
+
+export const DetailTypeContainer = styled.div`
+  width: ${(props) => props.width};
+`;
+
+export const MoreInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+  height: 0;
+  overflow: hidden;
+
+  ${(props) => {
+    return (
+      props.isActive &&
+      css`
+        height: 225px;
+      `
+    );
+  }};
 `;

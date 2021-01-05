@@ -10,9 +10,10 @@ import {
   ClapperInfo,
   SearchContainer,
   SearchBar,
-  ClearButton,
+  Button,
 } from "./styled";
 import config from "../../config";
+import MovieResults from "./MovieResults";
 
 const apiKey = config.omdbAPIKey;
 
@@ -28,7 +29,7 @@ const Home = () => {
 
     try {
       const response = await fetch(
-        `http://omdbapi.com/?apikey=${apiKey}&type=movie&s=${currentInputValue}`
+        `https://omdbapi.com/?apikey=${apiKey}&type=movie&s=${currentInputValue}`
       );
       const data = await response.json();
       if (data.Search) {
@@ -54,8 +55,6 @@ const Home = () => {
     setSearchResults([]);
   }
 
-  console.log("searchResults", searchResults);
-
   return (
     <HomeContainer>
       <img src={clappingBoard} alt="clapping board" width="100%" />
@@ -69,10 +68,11 @@ const Home = () => {
             value={searchInput}
             onChange={(e) => handleChange(e)}
           />
-          <ClearButton onClick={clearSearchInput}>
+          <Button onClick={clearSearchInput}>
             <img src={clearIcon} alt="clear icon" width="80" />
-          </ClearButton>
+          </Button>
         </SearchContainer>
+        <MovieResults searchResults={searchResults} />
       </ClapperInfo>
     </HomeContainer>
   );

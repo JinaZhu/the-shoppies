@@ -1,9 +1,11 @@
 import React from "react";
 
+import NominationStack from "../../components/NominationStack";
+
 const Nominees = () => {
   return (
     <div>
-      <p>I am nominee</p>
+      <NominationStack />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import React from "react";
 const Nominees = () => {
   return (
     <div>
-      <p>I am nominees</p>
+      <p>I am nominee</p>
     </div>
   );
 };

@@ -101,7 +101,7 @@ export const MoreInfoContainer = styled.div`
     return (
       props.isActive &&
       css`
-        height: 225px;
+        height: 240px;
       `
     );
   }};

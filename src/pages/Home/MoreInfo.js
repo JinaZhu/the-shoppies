@@ -25,17 +25,14 @@ const MoreInfo = ({ selectedMovie, isOpen, movieDetail }) => {
     }
     movieDetail.isAdded = true;
     setIsMovieAdded(true);
-    console.log("add", movieDetail);
   }
 
   function removeNomination(movieID) {
     const nominations = JSON.parse(localStorage.getItem("nominations"));
     delete nominations[movieID];
-    console.log("nominations", nominations);
     localStorage.setItem("nominations", JSON.stringify(nominations));
     movieDetail.isAdded = false;
     setIsMovieAdded(false);
-    console.log("remove", movieDetail);
   }
 
   return (

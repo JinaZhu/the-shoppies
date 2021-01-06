@@ -33,12 +33,14 @@ function checkMovieInLocalStorage(nominations, movieData) {
   return transformed;
 }
 
+const settingNominations = JSON.parse(localStorage.getItem("nominations"))
+  ? JSON.parse(localStorage.getItem("nominations"))
+  : {};
+
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [nominations, setNominations] = useState(
-    JSON.parse(localStorage.getItem("nominations"))
-  );
+  const [nominations, setNominations] = useState(settingNominations);
 
   const searchMovie = async (currentInputValue) => {
     if (!currentInputValue) {
@@ -84,6 +86,7 @@ const Home = () => {
   }
 
   const isMaxNominations = Object.keys(nominations).length < 5 ? false : true;
+
   const InputPlaceholder =
     Object.keys(nominations).length < 5
       ? "Search Movie"

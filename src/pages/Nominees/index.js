@@ -7,19 +7,25 @@ import {
   RightSwipeImg,
   SwipeDirectionContainer,
   SwipeContainer,
+  NomineeNav,
+  SwipeText,
 } from "./styled";
+import RedirectLink from "../../components/RedirectLink";
 
 const Nominees = () => {
   return (
     <NomineesContainer>
+      <NomineeNav>
+        <RedirectLink whereTo={"home"} toLink={"/"} />
+      </NomineeNav>
       <NominationStack />
       <SwipeDirectionContainer>
         <SwipeContainer>
-          <p>Swipe left to view next nomination movie poster</p>
+          <SwipeText>Swipe left to view next nomination movie poster</SwipeText>
           <LeftSwipeImg />
         </SwipeContainer>
         <SwipeContainer>
-          <p>Swipe right to remove movie from nominations</p>
+          <SwipeText>Swipe right to remove movie from nominations</SwipeText>
           <RightSwipeImg />
         </SwipeContainer>
       </SwipeDirectionContainer>

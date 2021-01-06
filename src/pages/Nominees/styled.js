@@ -25,14 +25,14 @@ export const LeftSwipeImg = styled.img.attrs({
   src: `${leftSwipeImg}`,
   alt: "left swipe",
 })`
-  width: 100px;
+  width: 90px;
 `;
 
 export const RightSwipeImg = styled.img.attrs({
   src: `${rightSwipeImg}`,
   alt: "right swipe",
 })`
-  width: 100px;
+  width: 90px;
 `;
 
 export const SwipeContainer = styled.div`
@@ -40,4 +40,16 @@ export const SwipeContainer = styled.div`
   font-size: 20px;
   color: white;
   text-align: center;
+`;
+
+export const NomineeNav = styled.div`
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 5%;
+`;
+
+export const SwipeText = styled.div`
+  margin: 0;
 `;

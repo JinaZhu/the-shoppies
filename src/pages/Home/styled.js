@@ -134,7 +134,14 @@ export const MaxNominationsContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  width: 100vw;
+  width: 90vw;
   color: white;
-  font-size: 25px;
+  font-size: 30px;
+`;
+
+export const Nav = styled.div`
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 100%;
 `;

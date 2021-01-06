@@ -11,10 +11,12 @@ import {
   SearchContainer,
   SearchBar,
   Button,
+  Nav,
 } from "./styled";
 import config from "../../config";
 import MovieResults from "./MovieResults";
 import MaxNominationsReached from "./MaxNominationsReached";
+import RedirectLink from "../../components/RedirectLink";
 
 const apiKey = config.omdbAPIKey;
 
@@ -82,19 +84,24 @@ const Home = () => {
   }
 
   const isMaxNominations = Object.keys(nominations).length < 5 ? false : true;
-  console.log(Object.keys(nominations).length);
-  console.log(isMaxNominations);
+  const InputPlaceholder =
+    Object.keys(nominations).length < 5
+      ? "Search Movie"
+      : "All nominations has been selected";
 
   return (
     <HomeContainer>
       <img src={clappingBoard} alt="clapping board" width="100%" />
       <ClapperInfo>
-        <ClapperText margin={"20px 0 5px 0"}>THE SHOPPIES</ClapperText>
+        <Nav>
+          <ClapperText margin={"20px 0 5px 0"}>THE SHOPPIES</ClapperText>
+          <RedirectLink whereTo={"Nominee"} toLink={"/nominees"} />
+        </Nav>
         <SearchContainer>
           <img src={search} alt="search icon" width="80" />
           <SearchBar
             type="text"
-            placeholder="Search Movie"
+            placeholder={InputPlaceholder}
             value={searchInput}
             onChange={(e) => handleChange(e)}
             disabled={isMaxNominations}

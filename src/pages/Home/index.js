@@ -11,9 +11,12 @@ import {
   SearchContainer,
   SearchBar,
   Button,
+  Nav,
 } from "./styled";
 import config from "../../config";
 import MovieResults from "./MovieResults";
+import MaxNominationsReached from "./MaxNominationsReached";
+import RedirectLink from "../../components/RedirectLink";
 
 const apiKey = config.omdbAPIKey;
 
@@ -33,6 +36,9 @@ function checkMovieInLocalStorage(nominations, movieData) {
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [nominations, setNominations] = useState(
+    JSON.parse(localStorage.getItem("nominations"))
+  );
 
   const searchMovie = async (currentInputValue) => {
     if (!currentInputValue) {
@@ -77,24 +83,42 @@ const Home = () => {
     setSearchResults([]);
   }
 
+  const isMaxNominations = Object.keys(nominations).length < 5 ? false : true;
+  const InputPlaceholder =
+    Object.keys(nominations).length < 5
+      ? "Search Movie"
+      : "All nominations has been selected";
+
   return (
     <HomeContainer>
       <img src={clappingBoard} alt="clapping board" width="100%" />
       <ClapperInfo>
-        <ClapperText margin={"20px 0 5px 0"}>THE SHOPPIES</ClapperText>
+        <Nav>
+          <ClapperText margin={"20px 0 5px 0"}>THE SHOPPIES</ClapperText>
+          <RedirectLink whereTo={"Nominee"} toLink={"/nominees"} />
+        </Nav>
         <SearchContainer>
           <img src={search} alt="search icon" width="80" />
           <SearchBar
             type="text"
-            placeholder="Search Movie"
+            placeholder={InputPlaceholder}
             value={searchInput}
             onChange={(e) => handleChange(e)}
+            disabled={isMaxNominations}
           />
           <Button onClick={clearSearchInput}>
             <img src={clearIcon} alt="clear icon" width="80" />
           </Button>
         </SearchContainer>
-        <MovieResults searchResults={searchResults} />
+        {!isMaxNominations ? (
+          <MovieResults
+            searchResults={searchResults}
+            setNominations={setNominations}
+            isMaxNominations={isMaxNominations}
+          />
+        ) : (
+          <MaxNominationsReached />
+        )}
       </ClapperInfo>
     </HomeContainer>
   );

@@ -3,7 +3,13 @@ import React, { useState } from "react";
 import { MoreInfoContainer, NominationButton, NominationText } from "./styled";
 import wreathImg from "../../images/wreath.png";
 
-const MoreInfo = ({ selectedMovie, isOpen, movieDetail }) => {
+const MoreInfo = ({
+  selectedMovie,
+  isOpen,
+  movieDetail,
+  setNominations,
+  isMaxNominations,
+}) => {
   const [isMovieAdded, setIsMovieAdded] = useState(movieDetail.isAdded);
   function revealDetail(id) {
     if (id === selectedMovie && isOpen) {
@@ -24,6 +30,7 @@ const MoreInfo = ({ selectedMovie, isOpen, movieDetail }) => {
       localStorage.setItem("nominations", JSON.stringify(allNominations));
     }
     movieDetail.isAdded = true;
+    setNominations(JSON.parse(localStorage.getItem("nominations")));
     setIsMovieAdded(true);
   }
 
@@ -33,13 +40,17 @@ const MoreInfo = ({ selectedMovie, isOpen, movieDetail }) => {
     localStorage.setItem("nominations", JSON.stringify(nominations));
     movieDetail.isAdded = false;
     setIsMovieAdded(false);
+    setNominations(JSON.parse(localStorage.getItem("nominations")));
   }
 
   return (
     <MoreInfoContainer isActive={revealDetail(movieDetail.imdbID)}>
       <img src={movieDetail.Poster} width="150" alt="movie poster" />
       {!isMovieAdded ? (
-        <NominationButton onClick={() => addNomination(movieDetail)}>
+        <NominationButton
+          onClick={() => addNomination(movieDetail)}
+          disabled={isMaxNominations}
+        >
           <img src={wreathImg} alt="aware" width="150" />
           <NominationText>Nominate</NominationText>
         </NominationButton>

@@ -23,7 +23,7 @@ const NominationStack = () => {
     JSON.parse(localStorage.getItem("nominations"))
   );
   const [gone] = useState(() => new Set());
-  const [props, set] = useSprings(nominations.length, (i) => ({
+  const [props, set] = useSprings(Object.keys(nominations).length, (i) => ({
     ...to(i),
     from: from(i),
   }));
@@ -48,6 +48,16 @@ const NominationStack = () => {
         const rot = mx / 100 + (isGone ? dir * 10 * velocity : 0);
         const scale = down ? 1.1 : 1;
 
+        if (isGone && dir > 0) {
+          const removeMovieID = Object.values(nominations)[i].imdbID;
+          const updatedNominations = { ...nominations };
+          delete updatedNominations[removeMovieID];
+          localStorage.setItem(
+            "nominations",
+            JSON.stringify(updatedNominations)
+          );
+        }
+
         return {
           x,
           rot,
@@ -57,12 +67,13 @@ const NominationStack = () => {
         };
       });
 
-      if (!down && gone.size === nominations.length)
+      if (!down && gone.size === Object.keys(nominations).length) {
         setTimeout(() => gone.clear() || set((i) => to(i)), 600);
+        setNominations(JSON.parse(localStorage.getItem("nominations")));
+      }
     }
   );
 
-  console.log(nominations);
   return (
     <StackContainer>
       {props.map((springProps, i) => (

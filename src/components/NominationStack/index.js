@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { useSprings } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
-import { StackContainer, MovieSearchLink } from "./styled";
+import { StackContainer } from "./styled";
+import { RedirectLink } from "../../globalStyles";
 import Poster from "./Poster";
 
 const to = (i) => ({
@@ -78,7 +79,7 @@ const NominationStack = () => {
     return (
       <StackContainer>
         <p>You have no nomination(s)</p>
-        <MovieSearchLink to="/">Search Movies</MovieSearchLink>
+        <RedirectLink to="/">Search Movies</RedirectLink>
       </StackContainer>
     );
   }

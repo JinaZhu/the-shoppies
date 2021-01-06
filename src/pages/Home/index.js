@@ -14,6 +14,7 @@ import {
 } from "./styled";
 import config from "../../config";
 import MovieResults from "./MovieResults";
+import MaxNominationsReached from "./MaxNominationsReached";
 
 const apiKey = config.omdbAPIKey;
 
@@ -33,6 +34,9 @@ function checkMovieInLocalStorage(nominations, movieData) {
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [nominations, setNominations] = useState(
+    JSON.parse(localStorage.getItem("nominations"))
+  );
 
   const searchMovie = async (currentInputValue) => {
     if (!currentInputValue) {
@@ -77,6 +81,10 @@ const Home = () => {
     setSearchResults([]);
   }
 
+  const isMaxNominations = Object.keys(nominations).length < 5 ? false : true;
+  console.log(Object.keys(nominations).length);
+  console.log(isMaxNominations);
+
   return (
     <HomeContainer>
       <img src={clappingBoard} alt="clapping board" width="100%" />
@@ -89,12 +97,21 @@ const Home = () => {
             placeholder="Search Movie"
             value={searchInput}
             onChange={(e) => handleChange(e)}
+            disabled={isMaxNominations}
           />
           <Button onClick={clearSearchInput}>
             <img src={clearIcon} alt="clear icon" width="80" />
           </Button>
         </SearchContainer>
-        <MovieResults searchResults={searchResults} />
+        {!isMaxNominations ? (
+          <MovieResults
+            searchResults={searchResults}
+            setNominations={setNominations}
+            isMaxNominations={isMaxNominations}
+          />
+        ) : (
+          <MaxNominationsReached />
+        )}
       </ClapperInfo>
     </HomeContainer>
   );

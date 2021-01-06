@@ -11,7 +11,7 @@ import {
 import downDownImg from "../../images/dropdown.svg";
 import MoreInfo from "./MoreInfo";
 
-const MovieResults = ({ searchResults }) => {
+const MovieResults = ({ searchResults, setNominations, isMaxNominations }) => {
   const [selectedMovie, setSelectedMovie] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
@@ -46,6 +46,8 @@ const MovieResults = ({ searchResults }) => {
               movieDetail={movieDetail}
               selectedMovie={selectedMovie}
               isOpen={isOpen}
+              setNominations={setNominations}
+              isMaxNominations={isMaxNominations}
             />
           </MovieLi>
         );

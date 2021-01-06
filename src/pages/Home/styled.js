@@ -127,3 +127,14 @@ export const NominationText = styled.p`
   color: white;
   font-weight: bold;
 `;
+
+export const MaxNominationsContainer = styled.div`
+  height: 48vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100vw;
+  color: white;
+  font-size: 25px;
+`;

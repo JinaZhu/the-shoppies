@@ -3,8 +3,8 @@ import { useSprings } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
 import { StackContainer } from "./styled";
-import { RedirectLink } from "../../globalStyles";
 import Poster from "./Poster";
+import NoNomination from "./NoNomination";
 
 const to = (i) => ({
   x: 0,
@@ -76,12 +76,7 @@ const NominationStack = () => {
   );
 
   if (!Object.keys(nominations).length) {
-    return (
-      <StackContainer>
-        <p>You have no nomination(s)</p>
-        <RedirectLink to="/">Search Movies</RedirectLink>
-      </StackContainer>
-    );
+    return <NoNomination />;
   }
 
   return (

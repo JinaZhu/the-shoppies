@@ -7,13 +7,21 @@ import {
   InfoText,
   Button,
   DetailTypeContainer,
+  LoadingContainer,
+  ReelImage,
 } from "./styled";
 import downDownImg from "../../images/dropdown.svg";
 import MoreInfo from "./MoreInfo";
 
-const MovieResults = ({ searchResults, setNominations, isMaxNominations }) => {
+const MovieResults = ({
+  searchResults,
+  setNominations,
+  isMaxNominations,
+  isMovieResultLoading,
+}) => {
   const [selectedMovie, setSelectedMovie] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  console.log(isMovieResultLoading);
 
   function selectReveal(title) {
     if (title === selectedMovie && isOpen) {
@@ -22,6 +30,15 @@ const MovieResults = ({ searchResults, setNominations, isMaxNominations }) => {
     }
     setSelectedMovie(title);
     setIsOpen(true);
+  }
+
+  if (isMovieResultLoading) {
+    return (
+      <LoadingContainer>
+        <p>Loading Movies...</p>
+        <ReelImage />
+      </LoadingContainer>
+    );
   }
 
   return (

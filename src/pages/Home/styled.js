@@ -1,4 +1,6 @@
-import styled, { css } from "styled-components";
+import styled, { css, keyframes } from "styled-components";
+
+import reelImgPath from "../../images/film-reel.svg";
 
 export const HomeContainer = styled.div`
   background-color: black;
@@ -144,4 +146,32 @@ export const Nav = styled.div`
   align-items: flex-start;
   justify-content: space-between;
   width: 100%;
+`;
+
+export const LoadingContainer = styled.div`
+  height: 48vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 90vw;
+  color: white;
+  font-size: 50px;
+`;
+
+const spin = keyframes`
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+`;
+
+export const ReelImage = styled.img.attrs({
+  src: `${reelImgPath}`,
+  alt: "reel",
+})`
+  animation: ${spin} 3s linear infinite;
+  width: 92px;
 `;

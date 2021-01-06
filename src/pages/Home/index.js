@@ -23,7 +23,6 @@ const apiKey = config.omdbAPIKey;
 function checkMovieInLocalStorage(nominations, movieData) {
   const transformed = movieData.map((movie) => {
     const isAdded = nominations.hasOwnProperty(movie.imdbID);
-    // const isAdded = movie.imdbID in nominations;
 
     return {
       ...movie,
@@ -40,11 +39,14 @@ const settingNominations = JSON.parse(localStorage.getItem("nominations"))
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [isMovieResultLoading, setIsMovieResultLoading] = useState(false);
   const [nominations, setNominations] = useState(settingNominations);
 
   const searchMovie = async (currentInputValue) => {
+    setIsMovieResultLoading(true);
     if (!currentInputValue) {
       setSearchResults([]);
+      setIsMovieResultLoading(false);
       return;
     }
 
@@ -65,7 +67,9 @@ const Home = () => {
           setSearchResults(data.Search);
         }
       }
+      setIsMovieResultLoading(false);
     } catch (error) {
+      setIsMovieResultLoading(false);
       console.log("error", error);
     }
   };
@@ -118,6 +122,7 @@ const Home = () => {
             searchResults={searchResults}
             setNominations={setNominations}
             isMaxNominations={isMaxNominations}
+            isMovieResultLoading={isMovieResultLoading}
           />
         ) : (
           <MaxNominationsReached />

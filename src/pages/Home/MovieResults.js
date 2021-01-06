@@ -4,13 +4,14 @@ import {
   MovieUl,
   MovieLi,
   DetailContainer,
-  InfoText,
+  TypeText,
   Button,
   DetailTypeContainer,
   LoadingContainer,
   ReelImage,
+  TypeResponse,
+  DropDownImg,
 } from "./styled";
-import downDownImg from "../../images/dropdown.svg";
 import MoreInfo from "./MoreInfo";
 
 const MovieResults = ({
@@ -48,15 +49,15 @@ const MovieResults = ({
           <MovieLi key={movieDetail.imdbID}>
             <DetailContainer>
               <DetailTypeContainer width={"70%"}>
-                <InfoText>Title</InfoText>
-                <InfoText size="50">{movieDetail.Title}</InfoText>
+                <TypeText>Title</TypeText>
+                <TypeResponse>{movieDetail.Title}</TypeResponse>
               </DetailTypeContainer>
               <DetailTypeContainer width={"15%"}>
-                <InfoText>year</InfoText>
-                <InfoText size="50">{movieDetail.Year}</InfoText>
+                <TypeText>year</TypeText>
+                <TypeResponse>{movieDetail.Year}</TypeResponse>
               </DetailTypeContainer>
               <Button onClick={() => selectReveal(movieDetail.imdbID)}>
-                <img src={downDownImg} alt="dropdown icon" width="50" />
+                <DropDownImg />
               </Button>
             </DetailContainer>
             <MoreInfo

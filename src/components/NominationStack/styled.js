@@ -10,7 +10,7 @@ export const StackContainer = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color: white;
+  color: black;
   font-size: 30px;
   div {
     position: absolute;

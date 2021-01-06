@@ -2,16 +2,16 @@ import React, { useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 
 import clappingBoard from "../../images/clapping-board.svg";
-import search from "../../images/search.svg";
-import clearIcon from "../../images/clear-icon.svg";
 import {
   HomeContainer,
-  ClapperText,
+  CompanyName,
   ClapperInfo,
   SearchContainer,
   SearchBar,
   Button,
   Nav,
+  SearchLogo,
+  ClearImg,
 } from "./styled";
 import config from "../../config";
 import MovieResults from "./MovieResults";
@@ -101,11 +101,11 @@ const Home = () => {
       <img src={clappingBoard} alt="clapping board" width="100%" />
       <ClapperInfo>
         <Nav>
-          <ClapperText margin={"20px 0 5px 0"}>THE SHOPPIES</ClapperText>
+          <CompanyName margin={"20px 0 5px 0"}>THE SHOPPIES</CompanyName>
           <RedirectLink whereTo={"Nominee"} toLink={"/nominees"} />
         </Nav>
         <SearchContainer>
-          <img src={search} alt="search icon" width="80" />
+          <SearchLogo />
           <SearchBar
             type="text"
             placeholder={InputPlaceholder}
@@ -114,7 +114,7 @@ const Home = () => {
             disabled={isMaxNominations}
           />
           <Button onClick={clearSearchInput}>
-            <img src={clearIcon} alt="clear icon" width="80" />
+            <ClearImg />
           </Button>
         </SearchContainer>
         {!isMaxNominations ? (

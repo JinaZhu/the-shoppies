@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const StackContainer = styled.div`
   background: transparent;
@@ -6,6 +7,12 @@ export const StackContainer = styled.div`
   height: 70vh;
   overflow: hidden;
   position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  font-size: 30px;
   div {
     position: absolute;
     width: 100%;
@@ -35,5 +42,18 @@ export const StackContainer = styled.div`
         pointer-events: none;
       }
     }
+  }
+`;
+
+export const MovieSearchLink = styled(Link)`
+  color: black;
+  text-decoration: none;
+  font-size: 30px;
+  border: 2px solid white;
+  padding: 10px;
+  background-color: white;
+
+  &:hover {
+    box-shadow: 0 0 10px white, 0 0 40px white, 0 0 80px white;
   }
 `;

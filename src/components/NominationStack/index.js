@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSprings } from "react-spring";
 import { useDrag } from "react-use-gesture";
 
-import { StackContainer } from "./styled";
+import { StackContainer, MovieSearchLink } from "./styled";
 import Poster from "./Poster";
 
 const to = (i) => ({
@@ -73,6 +73,15 @@ const NominationStack = () => {
       }
     }
   );
+
+  if (!Object.keys(nominations).length) {
+    return (
+      <StackContainer>
+        <p>You have no nomination(s)</p>
+        <MovieSearchLink to="/">Search Movies</MovieSearchLink>
+      </StackContainer>
+    );
+  }
 
   return (
     <StackContainer>

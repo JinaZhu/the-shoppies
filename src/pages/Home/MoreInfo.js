@@ -45,7 +45,11 @@ const MoreInfo = ({
 
   return (
     <MoreInfoContainer isActive={revealDetail(movieDetail.imdbID)}>
-      <img src={movieDetail.Poster} width="150" alt="movie poster" />
+      {movieDetail.Poster !== "N/A" ? (
+        <img src={movieDetail.Poster} width="150" alt="movie poster" />
+      ) : (
+        <p>Poster not available</p>
+      )}
       {!isMovieAdded ? (
         <NominationButton
           onClick={() => addNomination(movieDetail)}

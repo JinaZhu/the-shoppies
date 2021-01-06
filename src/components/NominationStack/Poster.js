@@ -5,6 +5,7 @@ import { animated, interpolate } from "react-spring";
 const Poster = ({ i, springProps, trans, bind, nominations }) => {
   const { x, y, rot, scale } = springProps;
   const image = nominations[i]["Poster"];
+  const Title = nominations[i]["Title"];
 
   return (
     <animated.div
@@ -22,7 +23,14 @@ const Poster = ({ i, springProps, trans, bind, nominations }) => {
           transform: interpolate([rot, scale], trans),
         }}
       >
-        <img src={image} alt="poster" />
+        {image !== "N/A" ? (
+          <img src={image} alt="poster" />
+        ) : (
+          <div>
+            <p>{Title}</p>
+            <p>Poster Not Available</p>
+          </div>
+        )}
       </animated.div>
     </animated.div>
   );

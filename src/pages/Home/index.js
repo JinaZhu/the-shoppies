@@ -2,16 +2,16 @@ import React, { useState, useCallback } from "react";
 import debounce from "lodash.debounce";
 
 import clappingBoard from "../../images/clapping-board.svg";
-import search from "../../images/search.svg";
-import clearIcon from "../../images/clear-icon.svg";
 import {
   HomeContainer,
-  ClapperText,
+  CompanyName,
   ClapperInfo,
   SearchContainer,
   SearchBar,
   Button,
   Nav,
+  SearchLogo,
+  ClearImg,
 } from "./styled";
 import config from "../../config";
 import MovieResults from "./MovieResults";
@@ -23,7 +23,6 @@ const apiKey = config.omdbAPIKey;
 function checkMovieInLocalStorage(nominations, movieData) {
   const transformed = movieData.map((movie) => {
     const isAdded = nominations.hasOwnProperty(movie.imdbID);
-    // const isAdded = movie.imdbID in nominations;
 
     return {
       ...movie,
@@ -40,11 +39,14 @@ const settingNominations = JSON.parse(localStorage.getItem("nominations"))
 const Home = () => {
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [isMovieResultLoading, setIsMovieResultLoading] = useState(false);
   const [nominations, setNominations] = useState(settingNominations);
 
   const searchMovie = async (currentInputValue) => {
+    setIsMovieResultLoading(true);
     if (!currentInputValue) {
       setSearchResults([]);
+      setIsMovieResultLoading(false);
       return;
     }
 
@@ -65,7 +67,9 @@ const Home = () => {
           setSearchResults(data.Search);
         }
       }
+      setIsMovieResultLoading(false);
     } catch (error) {
+      setIsMovieResultLoading(false);
       console.log("error", error);
     }
   };
@@ -97,11 +101,11 @@ const Home = () => {
       <img src={clappingBoard} alt="clapping board" width="100%" />
       <ClapperInfo>
         <Nav>
-          <ClapperText margin={"20px 0 5px 0"}>THE SHOPPIES</ClapperText>
+          <CompanyName margin={"20px 0 5px 0"}>THE SHOPPIES</CompanyName>
           <RedirectLink whereTo={"Nominee"} toLink={"/nominees"} />
         </Nav>
         <SearchContainer>
-          <img src={search} alt="search icon" width="80" />
+          <SearchLogo />
           <SearchBar
             type="text"
             placeholder={InputPlaceholder}
@@ -110,7 +114,7 @@ const Home = () => {
             disabled={isMaxNominations}
           />
           <Button onClick={clearSearchInput}>
-            <img src={clearIcon} alt="clear icon" width="80" />
+            <ClearImg />
           </Button>
         </SearchContainer>
         {!isMaxNominations ? (
@@ -118,6 +122,7 @@ const Home = () => {
             searchResults={searchResults}
             setNominations={setNominations}
             isMaxNominations={isMaxNominations}
+            isMovieResultLoading={isMovieResultLoading}
           />
         ) : (
           <MaxNominationsReached />

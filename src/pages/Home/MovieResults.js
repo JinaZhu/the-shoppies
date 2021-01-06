@@ -22,7 +22,6 @@ const MovieResults = ({
 }) => {
   const [selectedMovie, setSelectedMovie] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isMovieResultLoading);
 
   function selectReveal(title) {
     if (title === selectedMovie && isOpen) {

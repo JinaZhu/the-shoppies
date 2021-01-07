@@ -1,70 +1,66 @@
-# Getting Started with Create React App
+# The Shoppies Award
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+\*\*It's Live! View it [here!](https://theshoppiesawards.netlify.app/)
 
-## Available Scripts
+## Description
 
-In the project directory, you can run:
+Shopify has branched out into movie award shows (imaginary, not real) and wants to build an app to help manage their movie nominations for the upcoming Shoppies. This application can search OMDB for movies, and allow users to save their top 5 favourite films they feel should be up for nomination.
 
-### `npm start`
+## Table of Contents
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Technologies](#technologies)
+- [Installation](#install)
+- [Features](#features)
+- [Future Features](#futurePlans)
+- [Struggles](#str)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## <a name="technologies"></a>Technologies
 
-### `npm test`
+- [React](https://reactjs.org/docs/getting-started.html)
+- [styled-components](https://styled-components.com/)
+- [React Router](https://reactrouter.com/)
+- [React-Spring](https://www.react-spring.io/)
+- [Netlify](https://www.netlify.com/) for deployment
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## <a name="install"></a>Installation
 
-### `npm run build`
+Clone the-shoppies repository
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ git clone https://github.com/JinaZhu/the-shoppies.git
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Install dependencies
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```
+npm install
+```
 
-### `npm run eject`
+Run the app
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+npm run start
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## <a name="features"></a>Features
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- Search OMDB api for movies
+- View movie details
+- Add or remove movies from nomination list
+- Nominated movies are saved in local storage
+- View nominations that's powered by React-Spring with swiping effect
+  - Swipe left to view next nomination
+  - Swipe right to delete nomination
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+<img src="./src/images/shoppies-search.gif" width="400" /> <img src="./src/images/shoppies-stack.gif" width="400"/>
 
-## Learn More
+## <a name="futurePlans"></a>Future Features
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Create shareable link that enable user to send to friends and allow friends to vote to determine the winner
+- Instead of allowing only 5 nominations, create categories that allows 5 nominations per category
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## <a name="struggles"></a>Struggles
 
-### Code Splitting
+Creating the poster stack for the nominee route was the first time I've built something complex using React-Spring. I admired the swiping stack on the React-Spring sample page and wanted to challenge myself to take apart the [code sandbox](https://codesandbox.io/s/cards-fduch) and get it to work the way I wanted it to. There were many parts that I didn't fully understand what it does but console logging, playing around, and seeing what appeared helps me understand it enough to embed the delete function inside the stack function that I took from the code sandbox.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Test it out! [HERE!](https://theshoppiesawards.netlify.app/)

@@ -29,7 +29,7 @@ const NominationStack = () => {
     from: from(i),
   }));
 
-  const bind = useDrag(
+  const stack = useDrag(
     ({
       args: [index],
       down,
@@ -88,7 +88,7 @@ const NominationStack = () => {
           springProps={springProps}
           trans={trans}
           nominations={Object.values(nominations)}
-          bind={bind}
+          stack={stack}
         />
       ))}
     </StackContainer>

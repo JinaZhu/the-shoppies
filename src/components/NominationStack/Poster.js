@@ -2,7 +2,7 @@ import React from "react";
 
 import { animated, interpolate } from "react-spring";
 
-const Poster = ({ i, springProps, trans, bind, nominations }) => {
+const Poster = ({ i, springProps, trans, stack, nominations }) => {
   const { x, y, rot, scale } = springProps;
   const image = nominations[i]["Poster"];
   const Title = nominations[i]["Title"];
@@ -18,7 +18,7 @@ const Poster = ({ i, springProps, trans, bind, nominations }) => {
       }}
     >
       <animated.div
-        {...bind(i)}
+        {...stack(i)}
         style={{
           transform: interpolate([rot, scale], trans),
         }}
